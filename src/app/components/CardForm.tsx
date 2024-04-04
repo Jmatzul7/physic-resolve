@@ -10,11 +10,13 @@ interface CardFormProps{
 
 function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
   var url = "https://physic-resolved-b91b38c93cba.herokuapp.com"
+  var url1 = "http://localhost:5000"
   const [file, setFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // Estado para mostrar errores
   const [loading, setLoading] = useState(false); // Estado de carga
   const [serverResponse, setServerResponse] = useState<string | null>(null); // Estado para almacenar la respuesta del servidor
+  const [serverErrorResponse, setServerErrorResponse] = useState<string | null>(null);
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,8 +39,20 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
         }
       });
 
-      console.log('Server response:', response.data.extracted_text);
-      setServerResponse(response.data.extracted_text);
+      console.log('Server response:', response.data);
+
+    if (response.data.status === 400) {
+      console.log(response.data.error);
+    } else if (response.data.status === 200) {
+      if (response.data.extracted_text) {
+        setServerResponse(response.data.extracted_text);
+      } else {
+        console.log('No text found in the image');
+      }
+    } else {
+      console.log('Unexpected server response');
+    }
+
     } catch (error:any) {
       console.log('Server responser:',error.message );
       console.error('Error to sent the image:' + error.message);
@@ -96,13 +110,13 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
   return (
     <div className="Flex mx-2">
       <div className="bg-gradient-to-r mt-4 bg-blue-700 p-6 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-semibold mb-4">Upload an Image</h1>
+        <h1 className="text-2xl text-white font-semibold mb-4">Upload an Image</h1>
         </div>
         <div className="bg-slate-800 shadow-md rounded-md px-8 mt-4 pt-6 pb-8 mb-4">
         <form onSubmit={handleSubmit}>
           <input
             type="file"
-            className="shadow appearance-none border rounded w-full py-2 px-3 mb-2" 
+            className="shadow appearance-none text-white border rounded w-full py-2 px-3 mb-2" 
             accept="image/*"
             onChange={handleFileChange}
            
