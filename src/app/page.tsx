@@ -31,7 +31,7 @@ export default function Home() {
               handleLoading={setLoading}
             />
           </div>
-          <div className="lg:w-2/3 mx-4 md:w-1/3 w-full overflow-auto">
+          <div className="lg:w-2/3 md:w-1/3 w-full overflow-auto">
             <CardFormResponse 
               loading={loading}
               resolvedResponse={resolvedResponse} 
