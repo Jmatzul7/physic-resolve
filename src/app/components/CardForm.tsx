@@ -9,8 +9,8 @@ interface CardFormProps{
 }
 
 function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
-  var url1 = "https://physic-resolved-b91b38c93cba.herokuapp.com"
-  var url = "http://localhost:5000"
+  var url = "https://physic-resolved-b91b38c93cba.herokuapp.com"
+  var url1 = "http://localhost:5000"
   const [file, setFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // Estado para mostrar errores
