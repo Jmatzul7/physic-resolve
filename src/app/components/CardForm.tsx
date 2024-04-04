@@ -9,8 +9,8 @@ interface CardFormProps{
 }
 
 function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
-  var url = "https://physic-resolved-b91b38c93cba.herokuapp.com"
-  var url1 = "http://localhost:5000"
+  var url1 = "https://physic-resolved-b91b38c93cba.herokuapp.com"
+  var url = "http://localhost:5000"
   const [file, setFile] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null); // Estado para mostrar errores
@@ -43,6 +43,7 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
 
     if (response.data.status === 400) {
       console.log(response.data.error);
+      setServerErrorResponse(response.data.error);
     } else if (response.data.status === 200) {
       if (response.data.extracted_text) {
         setServerResponse(response.data.extracted_text);
@@ -51,6 +52,7 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
       }
     } else {
       console.log('Unexpected server response');
+      setServerErrorResponse(response.data.error)
     }
 
     } catch (error:any) {
@@ -147,6 +149,7 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
           </div>
         )}
         {errorMessage && <p className=" bg-slate-200 m-2 p-2 text-red-600 text-lg rounded-md">{errorMessage}</p>}
+        {serverErrorResponse && <p className=" bg-slate-200 m-2 p-2 text-red-600 text-lg rounded-md">{serverErrorResponse}</p>}
 
         {/* Mostrar la respuesta del servidor si está disponible */}
         {serverResponse && (
