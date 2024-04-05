@@ -157,6 +157,7 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
         {serverResponse && (
         <div>
           <br />
+          <h2 className="font-bold py-2 text-white text-xl">Please make sure the problem is not wrong:</h2>
           <textarea
             value={serverResponse} // Mostrar editedResponse si está disponible, de lo contrario, mostrar serverResponse
             onChange={(e) => setServerResponse(e.target.value)}
