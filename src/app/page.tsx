@@ -20,7 +20,7 @@ export default function Home() {
               height={40}
               alt="Logo"
             />
-            <h1 className="text-xl text-white font-semibold mb-4 ml-2">Welcome to Physic Resolve</h1>
+            <h1 className="text-xl text-white font-semibold mb-4 ml-2">Welcome to Physic Resolve - @jmatzul7</h1>
           </div>
         </div>
         <div className="flex flex-col mx-5 justify-center lg:flex-row md:flex-row">

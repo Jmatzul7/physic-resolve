@@ -20,6 +20,7 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setServerResponse(null)
     e.preventDefault();
     if (!file) {
       setErrorMessage('Please select an image...');
@@ -41,10 +42,10 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
 
       console.log('Server response:', response.data);
 
-    if (response.data.status === 400) {
-      console.log(response.data.error);
-      setServerErrorResponse(response.data.error);
-    } else if (response.data.status === 200) {
+    if (response.data.status == 400) {
+      console.log("Error",response.data);
+      setServerErrorResponse(response.data);
+    } else if (response.data.status == 200) {
       if (response.data.extracted_text) {
         setServerResponse(response.data.extracted_text);
       } else {
@@ -52,12 +53,13 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
       }
     } else {
       console.log('Unexpected server response');
-      setServerErrorResponse(response.data.error)
+      setServerErrorResponse(response.data)
     }
 
     } catch (error:any) {
       console.log('Server responser:',error.message );
       console.error('Error to sent the image:' + error.message);
+      setErrorMessage(error.message);
     }finally{
       setLoading(false);
     }
@@ -67,7 +69,7 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
     if (e.target.files && e.target.files.length > 0) {
       const selectedFile = e.target.files[0];
       setFile(selectedFile);
-
+      setServerResponse(null);
       // Mostrar vista previa de la imagen seleccionada
       const reader = new FileReader();
       reader.onloadend = () => {
