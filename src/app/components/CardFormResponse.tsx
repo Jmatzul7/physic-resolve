@@ -1,5 +1,6 @@
 'use client'
 import { RingLoader } from 'react-spinners';
+import ListTopics from './ListTopics';
 
 interface CardFormResponseProps {
   resolvedResponse: any;
@@ -8,10 +9,13 @@ interface CardFormResponseProps {
 
 function CardFormResponse({ resolvedResponse, loading }: CardFormResponseProps) {
     let formattedTextLines: string[] = [];
+
+    let topics: boolean = true;
   
     if (resolvedResponse) {
       // Dividir el texto en líneas
       formattedTextLines = resolvedResponse.trim().split("\n");
+      topics = false
     }
   
     return (
@@ -28,6 +32,20 @@ function CardFormResponse({ resolvedResponse, loading }: CardFormResponseProps) 
                 <p key={index} className="text-white font-serif">{line}</p>
               ))}
             </div>
+          )}
+
+          {topics &&(
+           <div className='text-gray-400'>
+              <h2 className="text-2xl font-semibold text-center">
+              ⭐ TEMAS ⭐ 
+              </h2>
+              <br/>
+              <hr/>
+              <br/>
+              <ListTopics/>
+           </div>
+            
+          
           )}
 
       {loading && (
