@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Noto_Serif } from "next/font/google"
+
+const noto = Noto_Serif({
+    subsets:['latin'],
+    weight: ['400', '700']
+})
+
 
 export const metadata: Metadata = {
   title: "Physic resolve",
@@ -15,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={noto.className}>{children}</body>
     </html>
   );
 }

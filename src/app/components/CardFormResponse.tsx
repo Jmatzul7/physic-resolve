@@ -33,8 +33,15 @@ function CardFormResponse({ resolvedResponse, loading }: CardFormResponseProps) 
               ))}
             </div>
           )}
+        {loading && (
+                        <div className="flex justify-center items-center h-32">
+                          
+                          <RingLoader color="#36D7B7" />
 
-          {topics &&(
+                          <p className="text-gray-500 ml-2">   Please wait, loading content</p>
+                        </div>
+                      )}
+          {topics && !loading &&(
            <div className='text-gray-400'>
               <h2 className="text-2xl font-semibold text-center">
               ⭐ TEMAS ⭐ 
@@ -48,14 +55,7 @@ function CardFormResponse({ resolvedResponse, loading }: CardFormResponseProps) 
           
           )}
 
-      {loading && (
-                <div className="flex justify-center items-center h-32">
-                  
-                  <RingLoader color="#36D7B7" />
-
-                  <p className="text-gray-500 ml-2">   Please wait, loading content</p>
-                </div>
-              )}
+      
         </div>
       </div>
     );

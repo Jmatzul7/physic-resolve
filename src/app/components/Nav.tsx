@@ -18,7 +18,7 @@ export function Nav()  {
             alt=""
           />
           <div className={oleo.className} >
-           <h1 className="text-xl text-white items-center font-semibold mb-4 ml-2">Welcome to Physic Resolve - @jmatzul7</h1>
+           <h1 className="text-2xl text-white items-center font-semibold mb-4 ml-2">Welcome to Physic Resolve - @jmatzul7</h1>
            </div>
         </div>
       </div>

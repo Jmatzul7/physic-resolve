@@ -123,7 +123,6 @@ function CardForm({handleResolvedResponse, handleLoading}:CardFormProps){
             className="shadow appearance-none text-white border rounded w-full py-2 px-3 mb-2" 
             accept="image/*"
             onChange={handleFileChange}
-           
           />
           <br />
           {previewImage && (
