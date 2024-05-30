@@ -8,7 +8,13 @@ const items = [
     "Leyes De Newton",
     "Fuerza",
     "Masa Y Peso",
-    "Momento Lineal E Impulso"
+    "Momento Lineal E Impulso",
+    "Trabajo",
+    "Energía y Potencia",
+    "Energía Mecánica",
+    "Energía Cinética",
+    "Energía Potencial",
+    "Movimiento unidireccional"
   ];
 
 function ListTopics() {
